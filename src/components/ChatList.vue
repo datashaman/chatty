@@ -1,6 +1,16 @@
 <script setup>
 import { defineEmits, defineProps, ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import {
+    Button,
+    Card,
+    CardActions,
+    CardBody,
+    CardTitle,
+    Menu,
+    MenuItem,
+    TextInput,
+} from 'daisy-ui-kit'
 
 defineEmits(['create-chat'])
 
@@ -11,23 +21,23 @@ const { chats }  = defineProps({
 const title = ref('')
 </script>
 <template>
-    <div class="card shadow-xl">
-        <div class="card-body">
-            <h2 class="card-title px-6">Chats</h2>
+    <Card class="shadow-xl">
+        <CardBody>
+            <CardTitle is="h2">Chats</CardTitle>
 
-            <ul class="menu flex flex-col gap-2">
-                <li>
+            <Menu class="flex flex-col gap-2">
+                <MenuItem>
                     <RouterLink :to="{ name: 'home' }" activeClass="active">Home</RouterLink>
-                </li>
-                <li v-for="c in chats" :key="c.uuid" class="flex">
+                </MenuItem>
+                <MenuItem v-for="c in chats" :key="c.uuid">
                     <RouterLink :to="{ name: 'chat', params: { uuid: c.uuid }}" activeClass="active">{{ c.title }}</RouterLink>
-                </li>
-            </ul>
+                </MenuItem>
+            </Menu>
 
             <form @submit.prevent="$emit('create-chat', title)" class="w-full flex gap-2">
-                <input type="text" class="w-full input input-bordered" placeholder="Create new chat" v-model="title">
-                <button type="submit" class="btn btn-primary">+</button>
+                <TextInput class="w-full input-bordered" placeholder="Create new chat" v-model="title" />
+                <Button type="submit" primary>+</Button>
             </form>
-        </div>
-    </div>
+        </CardBody>
+    </Card>
 </template>

@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import ChatList from './components/ChatList.vue'
+import router from './router'
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL
 
@@ -17,6 +18,8 @@ const createChat = async (title) => {
     }).then((res) => res.json())
 
     chats.value.unshift(chat)
+
+    router.push({ name: 'chat', params: { uuid: chat.uuid } })
 }
 
 onMounted(async () => {

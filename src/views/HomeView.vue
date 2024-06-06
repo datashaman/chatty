@@ -1,8 +1,15 @@
+<script setup>
+import {
+    Card,
+    CardBody,
+    CardTitle,
+} from 'daisy-ui-kit'
+</script>
 <template>
-    <div class="card shadow-xl">
-        <div class="card-body">
-            <h2 class="card-title">Welcome to Chat App</h2>
+    <Card class="shadow-xl">
+        <CardBody>
+            <CardTitle is="h2">Welcome to Chat App</CardTitle>
             <p>Select a chat on the left, or create a new one.</p>
-        </div>
-    </div>
+        </CardBody>
+    </Card>
 </template>
